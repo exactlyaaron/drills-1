@@ -2,17 +2,19 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Drill - 16
-    link(rel='stylesheet', href='./css/d-16.css')
+    title Drill - 17
+    link(rel='stylesheet', href='./css/d-17.css')
   body
     h1 MultiQuote
 
-    input#symbol(type='text')
-    button#get Get Quote
+    input#shares(type='text', placeholder='# SHARES')
+    input#symbol(type='text', placeholder='SYMBOL')
+    button#get Get Position
 
-    #quotes
+    #wrapper
+      #position-wrapper
 
 
 
     script(src='./js/vendor/jquery-2.1.0.js')
-    script(src='./js/source/d-16.js')
+    script(src='./js/source/d-17.js')

@@ -5,16 +5,24 @@
 
 
   function init(){
-    $('#get').click(addQuote);
+    $('#get').click(getPosition);
   }
 
-  function addQuote(){
-    var symbol = $('#symbol').val().trim().toUpperCase();
+  function getPosition(){
+    var symbol = $('#symbol').val().toUpperCase();
     var url = 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol='+symbol+'&callback=?';
 
     $.getJSON(url, function(data){
-      $('#quotes').append('<div class="quote-wrapper"><div class="symbol">'+data.Symbol+'</div><div class="company-name">'+data.Name+'</div><div class="price">$'+data.LastPrice+'</div></div>');
+      var shares = $('#shares').val();
+      var sharesDiv = '<div>SHARES: ' + shares + '</div>';
+      var priceDiv = '<div>PRICE: $' + data.LastPrice + '</div>';
+      var positionDiv = '<div>POSITION: $' + calculatePosition(shares, data.LastPrice) + '</div>';
+      $('#position-wrapper').append(sharesDiv+priceDiv+positionDiv);
     });
+  }
+
+  function calculatePosition(shares, price){
+    return (shares * price).toFixed(2);
   }
 
 
